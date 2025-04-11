@@ -1,72 +1,60 @@
 #include <iostream>
-#include <string>
 using namespace std;
-class Student
-{
+
+class Student {
 public:
-    int id;
-    int age;
-    string name;
-    int nos;
+  int id;
+  int age;
+  string name;
+  int nos;
 
 private:
-    int *gpa;
-    string gf;
+  float *gpa;
+  string gf;
 
 public:
-    // student constr
-    Student()
-    {
-        cout << "student default constr called" << endl;
-    }
-
-    // parameterized constr
-    Student(int id, int age, string name, int nos)
-    {
-        this->id = id;
-        this->age = age;
-        this->name = name;
-        this->nos = nos;
-    }
-    // copy constsr
-    Student(const Student &srcobj)
-    {
-        this->id = srcobj.id;
-        this->age = srcobj.age;
-        this->name = srcobj.name;
-        this->gpa = srcobj.gpa;
-    }
-    void study()
-    {
-        cout << this->name << " studies" << endl;
-    }
-    void sleeps()
-    {
-        cout << this->name << " sleeps" << endl;
-    }
-    void bunk()
-    {
-        cout << this->name << " bunks" << endl;
-    }
-    // default destr
-    ~Student()
-    {
-        cout << "student default destr called" << endl;
-    }
+  Student(int id, int age, string name, float gpa, string gf) {
+    cout << "constructor has been called";
+    this->id = id;
+    this->age = age;
+    this->name = name;
+    this->gpa = new float(gpa);
+    this->gf = gf;
+    cout << endl;
+  }
+  // getters and setters
+  // for gpa
+  void setGpa(float m){
+    *this->gpa=m;
+  }
+  float getGpa(){
+    return *this->gpa;
+  }
+  //for age
+  void setAge(int age){
+    this->age=age;
+  }
+  int getAge(){
+    return this->age; // this matlb jo bhi object call kr rha hai usika age return kro kisi aur ka nahi 
+  }
+  void sleeps() { cout << this->name << " is sleeping" << endl; }
+  void bunk() { cout << this->name << " is bunking" << endl; }
+  void study() { cout << this->name << " is studying" << endl; }
+  ~Student() {
+    cout << "destructor has been called ";
+    cout << endl;
+  }
 
 private:
-    void gfChatting()
-    {
-        cout << "student chats with gf" << endl;
-    }
+  void gfChatting() { cout << "chatting with gf"; }
 };
-int main()
-{
-    Student A;
-    A.id = 1;
-    A.name = "mani";
-    Student(1,2,"mani", 6);
-    Student C=A;
-    cout<<C.name<<endl;;
-    return 0;
+int main() {
+  Student A(1, 13, "mani", 9.1, "nupur ");
+  cout << A.id << endl;
+  // cout<<A.gf<<endl;
+  A.bunk();
+  A.setGpa(8.9);
+  cout<<"age->"<<A.getAge()<<endl;
+  cout<<A.getGpa()<<endl;
+  return 0;
 }

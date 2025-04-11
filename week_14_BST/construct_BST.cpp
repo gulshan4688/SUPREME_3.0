@@ -15,13 +15,13 @@ public:
         right = NULL;
     }
 };
-void buildTree(Node* &root, int val)
+void buildTree(Node *&root, int val)
 {
     // if root is equal to null then make a new value root
     if (root == NULL)
     {
         root = new Node(val);
-        return ;
+        return;
     }
     if (val < root->data)
     {
@@ -59,7 +59,7 @@ void LOT(Node *root)
         q.pop();
         if (front == NULL)
         {
-            cout<<endl;
+            cout << endl;
             if (!q.empty())
             {
                 q.push(NULL);
@@ -67,7 +67,7 @@ void LOT(Node *root)
         }
         else
         {
-            cout<<front->data<<" ";
+            cout << front->data << " ";
             if (front->left)
             {
                 q.push(front->left);
@@ -79,10 +79,75 @@ void LOT(Node *root)
         }
     }
 }
+void IOT(Node *root)
+{
+    if (!root)
+        return;
+    IOT(root->left);
+    cout << root->data << " ";
+    IOT(root->right);
+}
+void POT(Node *root)
+{
+    if (!root)
+        return;
+    cout << root->data << " ";
+    POT(root->left);
+    POT(root->right);
+}
+void POOT(Node *root)
+{
+    if (!root)
+        return;
+    POOT(root->left);
+    POOT(root->right);
+    cout << root->data << " ";
+}
+int FindMax(Node *root)
+{
+    if (!root)
+        return -1;
+    while (root->right != NULL)
+    {
+        root = root->right;
+    }
+    return root->data;
+}
+int FindMin(Node *root)
+{
+    if (!root)
+        return -1;
+    while (root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root->data;
+}
+bool SearchInBST(Node* root,int val){
+    if(!root) return false;
+    if(root->data==val){
+        return true;
+    }
+    if(val<root->data){
+        SearchInBST(root->left,val);
+    }
+    else{
+        SearchInBST(root->right,val);
+    }
+}
 int main()
 {
     cout << "Hello world" << endl;
     Node *root = creatTree();
-    LOT(root);
+    // LOT(root);
+    // cout<<"I O T"<<endl;
+    // IOT(root);
+    // cout<<"Pr O T"<<endl;
+    // POT(root);
+    // cout<<"I O T"<<endl;
+    // POOT(root);
+    // cout << FindMin(root)<<endl;
+    // cout << FindMax(root);
+    cout<<SearchInBST(root,10);
     return 0;
 }

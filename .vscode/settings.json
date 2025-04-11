@@ -1,7 +1,10 @@
 {
   "files.associations": {
     "ostream": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "sstream": "cpp",
+    "queue": "cpp"
   },
   "git.ignoreLimitWarning": true
 }
+
