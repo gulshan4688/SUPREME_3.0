@@ -18,13 +18,16 @@ class abc {
     int getY(){
         return *y;
     }
-    int setX(int val){
+    int setY(int val){
         *y=val;
     }
     
 };
 int main(){
-
+    abc c;
+    cout<<c.getX()<<endl;
+    cout<<c.getY()<<endl;
+    return 0;
 }
 int main2()
 {
