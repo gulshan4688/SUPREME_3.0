@@ -83,7 +83,6 @@ void heapSort(int *arr, int n) {
     n--;
     // now heapify 1 index wala element
     heapify(arr, n , 1);
-    // e+1 because agar last index e hai to arr ka size e+1 hoga
   }
 }
 int main() {

@@ -116,6 +116,7 @@ int main()
     Node *root = Node::createTree();
     // 10 50 40 -1 -1 -1 30 20 -1 -1 -1
     // cout << "printing value of root " << root->data << endl;
-    levelOrderTraversal(root);
+    // levelOrderTraversal(root);
+    preOrderTraversal(root);
     return 0;
 }
