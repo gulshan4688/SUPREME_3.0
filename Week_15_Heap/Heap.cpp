@@ -7,9 +7,9 @@ public:
   int capacity;
   int index;
 
-  Heap(int capacity) {
-    this->capacity = capacity;
-    arr = new int[capacity];
+  Heap(int n) {
+    this->capacity = n;
+    arr = new int[n];
     index = 0;
   }
 
@@ -49,11 +49,10 @@ public:
   }
   void heapify(int *arr, int n, int currIdx) {
     // n-> no. of element in the heap
-    int i = currIdx;
-    int leftIdx = 2 * i;
-    int rightIdx = 2 * i + 1;
-    // lets assume the that at i , there is the largest value
-    int largestIdx = i;
+    int leftIdx = 2 * currIdx;
+    int rightIdx = 2 * currIdx + 1;
+    // lets assume the that at currIdx , there is the largest value
+    int largestIdx = currIdx;
     // check for left
     if (leftIdx < n && arr[leftIdx] > arr[largestIdx]) {
       largestIdx = leftIdx;
@@ -63,10 +62,10 @@ public:
     }
     // now we have index of lagest element till now
     // now the new case can be that largestIdx is still i
-    if (largestIdx != i){
-        swap(arr[largestIdx],arr[i]);
-        i=largestIdx;
-        heapify(arr,n,i);
+    if (largestIdx != currIdx){
+        swap(arr[largestIdx],arr[currIdx]);
+        currIdx=largestIdx;
+        heapify(arr,n,currIdx);
     }
 
   }
@@ -85,6 +84,7 @@ int main() {
   pq.insert(14);
   pq.printHeap();
   pq.deleteFromHeap();
+  cout<<"printing after deletion"<<endl;
   pq.printHeap();
 
   return 0;
