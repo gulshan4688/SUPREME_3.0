@@ -19,6 +19,9 @@ public:
     }
     cout << endl;
   }
+  void gituhub (){
+    
+  }
 
   void insert(int val) {
     if (index == capacity) {
