@@ -2,6 +2,7 @@
 #include<unordered_map>
 #include<list>
 #include<queue>
+#include<algorithm>
 using namespace std;
 
 class Graph{
@@ -19,7 +20,6 @@ class Graph{
         }
 
     }
-    
     void BFS(int src){
         unordered_map<int, bool> visited;
         queue<int> q;
@@ -61,7 +61,6 @@ class Graph{
             if(!visited[src]) dfsHelper(src, visited);
         }
     }
-
     void printGraph(int n){ 
 
         for(int i = 0; i < n ; i++){
@@ -73,25 +72,54 @@ class Graph{
             cout<<"]"<<endl;
         }
     }
+    void shorTestPathBFS(int src, int dest){
+        unordered_map<int, bool> visited;
+        unordered_map<int, int> parent;
+        queue<int> q;
+
+        // maintain intial state 
+        q.push(src);
+        parent[src] = -1;
+        visited[src] = true;
+
+        while(!q.empty()){
+            int front = q.front();
+            q.pop();
+            for(auto &nbr : adjList[front]){
+               if(!visited[nbr]){
+                    visited[nbr] = true;
+                    q.push(nbr);
+                    parent[nbr] = front;
+               }
+            }
+        }
+        // Now our parent array is ready 
+        vector<int> path;
+        int node = dest;
+        while(node != -1){
+            path.push_back(node);
+            node = parent[node];
+        }
+        reverse(path.begin(), path.end());
+        cout<<"Path : ";
+        for(auto &i : path){
+            cout<<i<<"->";
+        }
+    }
 };
 
 int main(){
-    cout<<"Hello world";
-    cout<<endl;
+    cout<<"Hello world"<<endl;
     Graph g;
-    g.addEdge(0,3,1);
-    g.addEdge(0,5,1);
-    g.addEdge(0,2,1);
-    g.addEdge(3,5,1);
-    g.addEdge(5,4,1);
-    g.addEdge(5,6,1);
-    g.addEdge(4,1,1);
-    g.addEdge(6,1,1);
-    int n = 6;
-    g.printGraph(7);
-    cout<<"BFS : ";
-    g.BFS(0);
-    cout<<"DFS : ";
-    g.DFS(n);
+    g.addEdge(0,1,0);
+    g.addEdge(1,2,0);
+    g.addEdge(2,3,0);
+    g.addEdge(2,4,0);
+    g.addEdge(4,5,0);
+    g.addEdge(5,3,0);
+
+    int src = 0;
+    int dest = 3;
+    g.shorTestPathBFS(src, dest);
     return 0;
 }
