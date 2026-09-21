@@ -73,6 +73,7 @@ class Graph {
         // traversal and count bridges between group nodes 
 
         int count = 0 ;
+        
         unordered_map<int, bool> visited;
 
         while(!st.empty()){
